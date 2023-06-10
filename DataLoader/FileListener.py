@@ -2,6 +2,7 @@ import os
 import time
 from sql_data_loader import SQLDataLoader
 
+
 class FileListener:
     def __init__(self, folder_path, db_folder_path):
         self.folder_path = folder_path
@@ -16,8 +17,9 @@ class FileListener:
                 for file in files:
                     file_path = os.path.join(self.folder_path, file)
                     try:
-                        sql_data_loader.load_data(file_path, self.db_folder_path, file)  # 处理文件
-                        #os.remove(file_path)  # 删除处理完的文件
+                        df = sql_data_loader.load_data(file_path, self.db_folder_path, file)  # 处理文件
+                        if df is not None:
+                            os.remove(file_path)  # 删除处理完的文件
                     except Exception as e:
                         print(f"Error processing file {file}: {e}")
                         self.failed_files.add(file)
