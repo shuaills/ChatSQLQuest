@@ -31,7 +31,7 @@ def process_uploads(uploaded_files):
 # Create a Gradio interface
 iface = gr.Interface(
     fn=process_uploads,
-    inputs = gr.Files(),
+    inputs = gr.Files(file_types=[".csv", ".sql", ".xlsx"], label="Upload CSV, SQL, XLSX file"),
     outputs="text"
 )
 
