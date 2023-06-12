@@ -40,7 +40,7 @@ class SQLDataLoader: # csv, xlsx to sqlite
             return None
         else:
             self.logger.info('Data loaded successfully!')
-            self._delete_original_file()
+            #self._delete_original_file()
             return df
 
     def _load_data_from_file(self, file_type):
